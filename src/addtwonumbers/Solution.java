@@ -7,7 +7,7 @@ class ListNode {
 	}
 public class Solution {
 	
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode res = null;
     	ListNode resNext = null;
     	boolean first = true;
@@ -56,13 +56,13 @@ public class Solution {
 //    	l2.next = k2;
 //    	k2.next = k3;   
     	
-//    	ListNode l3 = addTwoNumbers(l1,l2);
-//    	while(true){
-//    		System.out.println(l3.val);
-//    		l3 = l3.next;
-//    		if(l3==null){
-//    			break;
-//    		}
-//    	}
+    	ListNode l3 = addTwoNumbers(l1,l2);
+    	while(true){
+    		System.out.println(l3.val);
+    		l3 = l3.next;
+    		if(l3==null){
+    			break;
+    		}
+    	}
     }
 }
