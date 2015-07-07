@@ -10,8 +10,7 @@ public class Solution {
 	public int length = 0;
 	public char[] res = null;
 	public List<String> resList = new ArrayList<String>();
-	public List<String> letterCombinations(String digits) {
-		
+	public List<String> letterCombinations(String digits) {	
 		this.digits = digits;
 		length = digits.length();
 		res = new char[length];
