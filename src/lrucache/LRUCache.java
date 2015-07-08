@@ -1,46 +1,54 @@
 package lrucache;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 public class LRUCache {
     
-	private static HashMap<Integer,List<Integer>> cache = null;
+	private static LinkedHashMap<Integer,Integer> cache = null;
 	private static int capacity = 0;
-	private static int min = Integer.MAX_VALUE;
-	private static int mark = 0;
 	
-    public LRUCache(int capacity) {
-    	this.capacity = capacity;
-    	cache = new HashMap<Integer,List<Integer>>();
+    public LRUCache(int len) {
+    	capacity = len;
+    	cache = new LinkedHashMap<Integer,Integer>();
     }
     
     public int get(int key) {
         if(!cache.containsKey(key)){
         	return -1;
         }else{
-    		List<Integer> t = cache.get(key);
-    		t.set(1, t.get(1)+1);
-        	return t.get(0);
+        	int val = cache.get(key);
+        	cache.remove(key);
+        	cache.put(key, val);
+        	return val;
         }
     }
     
     public void set(int key, int value) {
     	if(!cache.containsKey(key)&&capacity!=0){
     		if(cache.size()>=capacity){
-            	for(Integer num : cache.keySet()){
-            		if(cache.get(num).get(1)<min){
-            			mark = num;
-            			min = cache.get(num).get(1);
-            		}
-            	}
-            	cache.remove(mark);
+    			int i=0;
+    			int t = 0;
+    			for(Integer dataKey : cache.keySet()) {
+    				i++;
+    				if(i==1){
+    					t = dataKey;
+    					break;
+    				}
+    			}
+    			cache.remove(t);
     		}
-    		List<Integer> t = new ArrayList<Integer>();
-    		t.add(value);
-    		t.add(1);
-        	cache.put(key, t);
+        	cache.put(key, value);
+    	}else{
+        	cache.remove(key);
+        	cache.put(key, value);
     	}
     }
+    
+    
+    public static void main(String[] args) {
+    	LRUCache c = new LRUCache(2);
+    	c.set(2, 1);c.set(1, 1);c.set(2, 3);c.set(4, 1);
+    	System.out.println(c.get(1));
+    	System.out.println(c.get(2));
+	}
 }
