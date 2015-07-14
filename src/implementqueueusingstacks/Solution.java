@@ -2,7 +2,6 @@ package implementqueueusingstacks;
 
 import java.util.Stack;
 
-import listnode.ListNode;
 
 public class Solution {
 	
