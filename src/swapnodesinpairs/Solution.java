@@ -30,14 +30,14 @@ public class Solution {
 		ListNode n2 = new ListNode(2);
 		ListNode n3 = new ListNode(3);
 		ListNode n4 = new ListNode(4);
-//		n1.next = n2;
-//		n2.next = n3;
-//		n3.next = n4;
-//		ListNode h = s.swapPairs(null);
-//		while(h!=null){
-//			System.out.println(h.val+"-");
-//			h=h.next;
-//		}
+		n1.next = n2;
+		n2.next = n3;
+		n3.next = n4;
+		ListNode h = s.swapPairs(null);
+		while(h!=null){
+			System.out.println(h.val+"-");
+			h=h.next;
+		}
 		System.out.println(5>>1);
 	}
     //ตÝน้

@@ -68,12 +68,12 @@ public class Solution {
 		TreeNode n5 = new TreeNode(5);
 		TreeNode n6 = new TreeNode(6);
 		TreeNode n7 = new TreeNode(7);
-//		n1.left = n2;
-//		n1.right = n3;
-//		n2.left = n4;
-//		n2.right = n5;
-//		n3.left = n6;
-//		n3.right = n7;
+		n1.left = n2;
+		n1.right = n3;
+		n2.left = n4;
+		n2.right = n5;
+		n3.left = n6;
+		n3.right = n7;
 		Solution s = new Solution();
 		System.out.println(s.countNodes(n1));
 //		System.out.println((1<<2)-1);

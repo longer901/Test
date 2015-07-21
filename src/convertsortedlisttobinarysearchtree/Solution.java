@@ -48,7 +48,7 @@ public class Solution {
 		n5.next = n6;
 		n6.next = n7;
 		TreeNode t = s.sortedListToBST(n1);
-		System.out.println();
+		System.out.println(t);
 	}
 
 }

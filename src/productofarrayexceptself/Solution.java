@@ -2,6 +2,7 @@ package productofarrayexceptself;
 
 
 public class Solution {
+	//²Î¿¼´ð°¸
     public int[] productExceptSelf(int[] nums) {
         int[] res = new int[nums.length];
         int[] pre = new int[nums.length];
