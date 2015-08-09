@@ -1,78 +1,45 @@
 package substringwithconcatenationofallwords;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class Solution {
-	public List<Integer> res = new ArrayList<Integer>();
-	public Map<String,Integer> dict = new HashMap<String,Integer>();
-	public int singlen = 0;
-	public int leastlen = 0;
+	//参考答案
     public List<Integer> findSubstring(String s, String[] words) {
-    	if(s==null||"".equals(s)||words==null||words.length==0)
-    		return res;
-    	singlen = words[0].length();
-    	leastlen = words.length*singlen;
-    	if(s.length()<leastlen)
-    		return res;
-        for(String w : words){
-        	if(dict.containsKey(w)){
-        		dict.put(w, dict.get(w)+1);
-        	}else
-        		dict.put(w, 1);
-        }
-//        System.out.println(dict);
-        backtrack(s);
-        return res;
-    }
-    public void backtrack(String target){
-    	if(target==null||target.equals("")||target.length()<leastlen)
-    		return;
-    	Map<String,Integer> log = new HashMap<String,Integer>();
-    	Set<String> set = new HashSet<String>();
-    	int begin = 0;
-    	int end = 0;
-    	while(begin<=end&&end+singlen<=target.length()){
-    		String t = target.substring(end, end+singlen);
-    		//不存在字典中，继续遍历
-    		if(!dict.containsKey(t)){
-    			begin++;
-    			end = begin;
-    			continue;
-    		}
-    		//在字典中,end向后遍历
-    		boolean flag = false;
-    		while(dict.containsKey(t)&&end+singlen<=target.length()){
-    			end = end+singlen;
-        		int v = log.containsKey(t)?log.get(t):0;
-        		log.put(t, v+1);
-        		if(dict.get(t)>=v+1){
-        			if(dict.get(t)==v+1)
-        				set.add(t);
+    	List<Integer> res = new ArrayList<Integer>();
+        if(s==null||words==null||s.length()==0||words.length==0)
+        	return res;
+        int wordLen = words[0].length();
+        for(int start=0;start<wordLen;start++){
+            List<String> dict = new LinkedList<String>(Arrays.asList(words));
+        	int b = start;
+        	int e = start;
+        	while(b<=e&&b<=s.length()-wordLen&&e<=s.length()-wordLen){
+        		String t = s.substring(e, e+wordLen);
+        		int pos = dict.indexOf(t);
+        		if(pos==-1){
+        			if(b==e){
+        				e += wordLen;
+        			}else{
+        				dict.add(s.substring(b, b+wordLen));
+        			}
+        			b += wordLen;
         		}else{
-        			begin++;
-        			end = begin;
-        			break;
+        			e += wordLen; 
+        			dict.remove(pos);
+            		if(dict.size()==0){
+            			res.add(b);
+            		}
         		}
-        		if(set.size()==dict.size()){
-        			flag= true;
-        			break;
-        		}
-        		if(end+singlen<=target.length())
-        			t = target.substring(end, end+singlen);
-    		}
-    		if(flag){
-    			res.add(begin);
-    			begin++;
-    			end = begin;
-    		}
-	    	log = new HashMap<String,Integer>();
-	    	set = new HashSet<String>();
-    	}
+        	}
+        }
+        return res;
     }
 	/**
 	 * @param args
