@@ -28,6 +28,6 @@ public class Solution {
     }
 	public static void main(String[] args) {
 		Solution s = new Solution();
-		System.out.println(s.getPermutation(9, 1));
+		System.out.println(s.getPermutation(9, 3));
 	}
 }

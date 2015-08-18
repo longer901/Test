@@ -16,9 +16,7 @@ public class Solution {
     	return res;
     }
     public void backTrack(int k){
-    	if(k>=nums.length){
-
-    	}else{
+    	if(k<nums.length){
     		for(int i=k;i>=0;i--){
     			oneRes.add(i,nums[k]);
         		if(k==nums.length-1){
@@ -26,6 +24,7 @@ public class Solution {
     				tem.addAll(oneRes);
     				res.add(tem);
         		}
+        		System.out.println("k="+k+"--"+oneRes);
     			backTrack(k+1);
     			oneRes.remove(i);
     		}
@@ -33,7 +32,7 @@ public class Solution {
     }
 	public static void main(String[] args) {
 			Solution s = new Solution();
-			int[] nums = new int[]{1,2,3};
+			int[] nums = new int[]{2,1,4,3};
 			System.out.println(s.permute(nums));
 	}
 }
